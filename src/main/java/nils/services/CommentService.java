@@ -15,12 +15,22 @@ public class CommentService {
 
    public CommentService() {
       apiService = new ApiService();
+      loadComments();
    }
 
+   /**
+    * List all comments
+    *
+    * @return List of comments
+    */
    public List<Comment> listComments() {
+      return Repository.getCommentRepository();
+   }
+
+   private void loadComments() {
       String response = apiService.get(BASE_URL + COMMENT_URL);
       Gson gson = new Gson();
       Comment[] comments = gson.fromJson(response, Comment[].class);
-      return Arrays.asList(comments);
+      Repository.setCommentRepository(Arrays.asList(comments));
    }
 }

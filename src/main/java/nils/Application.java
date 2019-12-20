@@ -1,20 +1,18 @@
 package nils;
 
-import nils.entities.User;
-import nils.services.UserService;
+import nils.services.TextUserInterface;
 
 public class Application {
 
    public static void main(String[] args) {
 
-      UserService userService = new UserService();
+      TextUserInterface textUserInterface = new TextUserInterface();
 
-      for (User u : userService.listUsers()) {
-         System.out.println(u.getName());
-         System.out.println(u.getPhone());
-         System.out.println(u.getAddress().getStreet());
-         System.out.println(u.getAddress().getCity());
-         System.out.println();
-      }
+      textUserInterface.start();
+
+      // TODO: find posts by user
+      // TODO: find users by city
+      // TODO: find comments of post
+      // TODO: find users by company
    }
 }

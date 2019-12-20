@@ -15,12 +15,22 @@ public class PostService {
 
    public PostService() {
       apiService = new ApiService();
+      loadPosts();
    }
 
+   /**
+    * List all posts.
+    *
+    * @return List of posts
+    */
    public List<Post> listPosts() {
+      return Repository.getPostRepository();
+   }
+
+   private void loadPosts() {
       String response = apiService.get(BASE_URL + POST_URL);
       Gson gson = new Gson();
       Post[] posts = gson.fromJson(response, Post[].class);
-      return Arrays.asList(posts);
+      Repository.setPostRepository(Arrays.asList(posts));
    }
 }
