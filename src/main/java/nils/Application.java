@@ -9,10 +9,5 @@ public class Application {
       TextUserInterface textUserInterface = new TextUserInterface();
 
       textUserInterface.start();
-
-      // TODO: find posts by user
-      // TODO: find users by city
-      // TODO: find comments of post
-      // TODO: find users by company
    }
 }

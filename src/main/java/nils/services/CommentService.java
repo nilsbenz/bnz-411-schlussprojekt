@@ -6,8 +6,12 @@ import static nils.api.Paths.COMMENT_URL;
 import com.google.gson.Gson;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import nils.api.ApiService;
 import nils.entities.Comment;
+import nils.entities.Post;
+import nils.entities.User;
 
 public class CommentService {
 
@@ -18,6 +22,7 @@ public class CommentService {
       loadComments();
    }
 
+
    /**
     * List all comments
     *
@@ -25,6 +30,33 @@ public class CommentService {
     */
    public List<Comment> listComments() {
       return Repository.getCommentRepository();
+   }
+
+   public List<Post> findPostByName(String name) {
+      return Repository.getPostRepository().stream()
+              .filter(post -> {
+                 for (String namePart : post.getTitle().split(" ")) {
+                    if (namePart.toUpperCase().startsWith(name.toUpperCase())) {
+                       return true;
+                    }
+                 }
+                 return false;
+              })
+              .collect(Collectors.toList());
+   }
+
+   public List<Comment> findCommentsByPost(String postname)  {
+      List<Post> posts = findPostByName(postname);
+      return Repository.getCommentRepository().stream().filter(
+              comment ->  {
+                  for(int i=0; i<posts.size(); i++) {
+                      if(comment.getPostId() == posts.get(0).getId()) {
+                    return true;
+                    }
+                  }
+                 return false;
+              }
+      ).collect(Collectors.toList());
    }
 
    private void loadComments() {

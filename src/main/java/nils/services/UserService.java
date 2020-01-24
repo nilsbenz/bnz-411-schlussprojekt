@@ -47,10 +47,36 @@ public class UserService {
             .collect(Collectors.toList());
    }
 
+   public List<User> findByCity(String cityname) {
+      return Repository.getUserRepository().stream()
+              .filter(user -> {
+                 for (String namePart : user.getAddress().getCity().split(" ")) {
+                    if (namePart.toUpperCase().startsWith(cityname.toUpperCase())) {
+                       return true;
+                    }
+                 }
+                 return false;
+              }).collect(Collectors.toList());
+   }
+
+    public List<User> findByCompany(String companyname) {
+        return Repository.getUserRepository().stream()
+                .filter(user -> {
+                    for (String namePart : user.getCompany().getName().split(" ")) {
+                        if (companyname.toUpperCase().startsWith(namePart.toUpperCase())) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+    }
+
    private void loadUsers() {
       String response = apiService.get(BASE_URL + USER_URL);
       Gson gson = new Gson();
       User[] users = gson.fromJson(response, User[].class);
       Repository.setUserRepository(Arrays.asList(users));
    }
+
+
 }
