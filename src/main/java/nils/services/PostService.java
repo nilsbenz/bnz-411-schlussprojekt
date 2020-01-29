@@ -45,6 +45,7 @@ public class PostService {
               .collect(Collectors.toList());
    }
 
+   //Gets all posts that are related to its creator
    public List<Post> listPostsByUser(String userName)  {
       List<User> users = findByName(userName);
            return Repository.getPostRepository().stream().filter(

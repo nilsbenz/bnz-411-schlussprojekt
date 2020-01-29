@@ -32,6 +32,7 @@ public class CommentService {
       return Repository.getCommentRepository();
    }
 
+
    public List<Post> findPostByName(String name) {
       return Repository.getPostRepository().stream()
               .filter(post -> {
@@ -45,6 +46,7 @@ public class CommentService {
               .collect(Collectors.toList());
    }
 
+   //This functions searches for all the Comments that are related to a specific comment the result is processed using the posts title
    public List<Comment> findCommentsByPost(String postname)  {
       List<Post> posts = findPostByName(postname);
       return Repository.getCommentRepository().stream().filter(
@@ -59,6 +61,7 @@ public class CommentService {
       ).collect(Collectors.toList());
    }
 
+   //Get all the comments from the apiservice and stores in localy in the Repository
    private void loadComments() {
       String response = apiService.get(BASE_URL + COMMENT_URL);
       Gson gson = new Gson();

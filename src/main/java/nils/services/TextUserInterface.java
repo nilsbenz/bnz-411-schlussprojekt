@@ -22,6 +22,7 @@ public class TextUserInterface {
       run = true;
    }
 
+   //Switch case to let the user select a action
    public void start() {
       System.out.println("Hallo. Hier kannst du das API JsonPlaceholder testen.");
       while (run) {
@@ -73,6 +74,7 @@ public class TextUserInterface {
       run = false;
    }
 
+   //Prints all Users
    private void listUsers() {
       System.out.println();
       printUsers(userService.listUsers());
@@ -83,6 +85,7 @@ public class TextUserInterface {
       printComments(commentService.listComments());
    }
 
+   //Triggers the findbyname function from the user Service
    private void findByName() {
       Scanner scanner = new Scanner(System.in);
       System.out.println("Gib einen Teil eines Namens ein:");
@@ -91,6 +94,7 @@ public class TextUserInterface {
       printUsers(userService.findByName(searchString));
    }
 
+   //Triggers the findByCompany function from the user Service
    private void findByCompany(){
       Scanner scanner = new Scanner(System.in);
       System.out.println("Gib einen Teil eines Namens ein:");
@@ -128,6 +132,7 @@ public class TextUserInterface {
       printPosts(postService.listPosts());
    }
 
+   //Loops trough all the passed user objects and prints the pre selected attribute values
    private void printUsers(List<User> users) {
       for (User u : users) {
          System.out.println(u.getName());
@@ -141,7 +146,7 @@ public class TextUserInterface {
 
    private void printPosts(List<Post> posts) {
       for(Post p : posts) {
-         System.out.println("Post-Title"+p.getTitle());
+         System.out.println("Post-Title ||"+p.getTitle()+"||");
          System.out.println(p.getBody());
          System.out.println();
       }
@@ -149,7 +154,7 @@ public class TextUserInterface {
 
    private void printComments(List<Comment> comments) {
       for (Comment u : comments) {
-         System.out.println(u.getName());
+         System.out.println("Comment-Title ||"+u.getName()+"||");
          System.out.println(u.getEmail());
          System.out.println(u.getBody());
          System.out.println();

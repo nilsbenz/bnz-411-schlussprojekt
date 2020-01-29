@@ -7,6 +7,7 @@ import nils.entities.User;
 
 class Repository {
 
+   //Repository Class to store the Apis return values
    private static List<User> userRepository;
    private static List<Post> postRepository;
    private static List<Comment> commentRepository;

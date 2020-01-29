@@ -47,6 +47,13 @@ public class UserService {
             .collect(Collectors.toList());
    }
 
+
+    /**
+     * Filter users by cityname. Returns all users which names start with given search string.
+     *
+     * @param cityname Search string
+     * @return List of users
+     */
    public List<User> findByCity(String cityname) {
       return Repository.getUserRepository().stream()
               .filter(user -> {
@@ -59,6 +66,13 @@ public class UserService {
               }).collect(Collectors.toList());
    }
 
+
+    /**
+     * Filter users by companyname. Returns all users which names start with given search string.
+     *
+     * @param companyname Search string
+     * @return List of users
+     */
     public List<User> findByCompany(String companyname) {
         return Repository.getUserRepository().stream()
                 .filter(user -> {

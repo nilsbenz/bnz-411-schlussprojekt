@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 public class ApiService {
-
+   //In this function the application Connects to the Api from Json-Placeholder api and returns its response as a String
    public String get(String path) {
 
       InputStream is;
